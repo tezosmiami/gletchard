@@ -1,0 +1,144 @@
+:root{
+  
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 33px;
+  --background: #1fff69;
+  --text: #3636ff;
+
+}
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Courier New, Helvetica Neue, sans-serif;
+  background-color: black;
+  font-family: 'Changa', sans-serif;
+  font-size: 33px;
+  height:100%;
+  background-color: var(--background);
+  color: var(--text);
+  
+}
+
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  cursor:pointer; 
+
+}
+a:hover, button:hover {
+  background-color: var(--text);
+  color: #9900ff;
+
+}
+* {
+  box-sizing: border-box;
+}
+
+div{
+
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-size:21px;
+  width: 100vw; 
+
+}
+
+header{
+  font-size:18px;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width: 80vw;
+  height: 77px;
+  color:#ffa800
+ 
+}
+.bold {
+  font-weight: bold;
+  color:#FF00F0;
+  font-size: 27px;
+  
+}
+button {
+  color: var(--text);
+  background-color:transparent;
+  border:none;
+  font-size:18px;
+  cursor: pointer;
+  margin:0;
+  font-family:  inherit;
+
+}
+
+.lightButton{
+  font-size:27px;
+}
+.lightMode {
+   /* --background: #ad33ff; */
+   --background: #3636ff;
+   --text: #1fff69;
+}
+
+
+footer{
+
+  bottom: 18px;
+  width: 100%;
+
+}
+
+.container{
+
+  width:96vw;
+  flex-direction: row;
+  flex-wrap:wrap;
+  justify-content: center;
+  cursor:pointer;
+  
+}
+
+li{
+  list-style-type: none;
+  text-align: center;
+  color: #9900ff;
+}
+.pop{
+  flex-direction: row;
+  flex-wrap:wrap;
+  height:270px;
+  width:180px;
+}
+.pop:hover {
+  transform: scale( 1.02)
+}
+.cardcontainer{
+  width: 90vw;
+  margin:18px;
+  display: flex;
+  justify-content: space-around;
+  
+}
+.imagecontainer{
+  position:relative;
+  height: 72vw;
+  max-width: 93vw;
+}
+.slicedcontainer{
+  width:33%;
+}
+
+.logo{
+    color:#FF00F0;
+}
+.name{
+  color:#9900ff;
+}
+.centerSync{
+  justify-content: center;
+}
