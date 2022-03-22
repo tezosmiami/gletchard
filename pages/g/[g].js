@@ -139,7 +139,7 @@ export default function Galerie({ gletchs }) {
         <meta name="twitter:image" content="/tezos512.png" />
       </Head>
       <p><a href={`https://tzkt.io/${gletchs[0]?.creator.address}`} target="blank"  rel="noopener noreferrer">
-      {gletchs[0]?.creator.name || gletchs[0].creator.address.substr(0, 5) + "..." + gletchs[0].creator.address.substr(-5)}</a></p>
+      {gletchs[0]?.creator.name || gletchs[0]?.creator.address.substr(0, 5) + "..." + gletchs[0]?.creator.address.substr(-5)}</a></p>
     <div className='container'>
     {gletchs.map(g => (
       <Link key={g.id} href={`/gletch/${g.id}`} token={`https://cloudflare-ipfs.com/ipfs/${g.artifact_uri.slice(7)}`} passHref>
