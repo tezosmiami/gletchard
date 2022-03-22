@@ -17,12 +17,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Courier New, Helvetica Neue, sans-serif;
   background-color: black;
-  font-family: 'Changa', sans-serif;
+  font-family: 'Ubuntu', monospace, sans-serif;
   font-size: 33px;
   height:100%;
   background-color: var(--background);
   color: var(--text);
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Press Start 2P';
   font-size: 27px;
   
 }
