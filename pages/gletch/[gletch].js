@@ -29,7 +29,7 @@ export const getStaticPaths = async() => {
  
   const queryObjkts = `
     query Objkts($tag: String!) {
-     hic_et_nunc_token(where: {supply: {_neq: "0"}, token_tags: {tag: {tag: {_eq: $tag}}}})  {
+     hic_et_nunc_token(where: {supply: {_neq: "0"}, token_tags: {tag: {tag: {_regex: $tag}}}})  {
       id
       creator{
         address
@@ -39,7 +39,7 @@ export const getStaticPaths = async() => {
    `;
    
    
-    const { errors, data } = await fetchGraphQL(queryObjkts, 'Objkts', { tag: 'photography' })
+    const { errors, data } = await fetchGraphQL(queryObjkts, 'Objkts', { tag: 'glitch' })
     if (errors) {
       console.error(errors)
     }
@@ -47,6 +47,7 @@ export const getStaticPaths = async() => {
     const axios = require('axios');
     const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc/main/filters/w.json');
     const gletchard = data.hic_et_nunc_token.filter(g => !banned.data.includes(g.creator.address));
+
     const paths = gletchard.map(g => {
       return {
           params: {
@@ -163,7 +164,7 @@ return(
     <div className='bold'>{card.title}</div>
     <Link key={card.address} href={`/g/${card.creator.name || card.creator.address}`} passHref>
     <p>
-    by:  <a> {card.creator.name || card.creator.address}
+    by:  <a> {card.creator.name || card.creator.address.substr(0, 5) + "..." + card.creator.address.substr(-5)}
     </a>
     </p>
     </Link>

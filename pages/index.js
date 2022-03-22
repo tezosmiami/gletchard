@@ -11,7 +11,7 @@ export const getStaticProps = async() => {
 
   const queryObjkts = `
     query ObjktsByTag($tag: String!) {
-     hic_et_nunc_token(where: {supply: {_neq: "0"}, token_tags: {tag: {tag: {_eq: $tag}}}}, order_by: {id: desc})  {
+     hic_et_nunc_token(where: {supply: {_neq: "0"}, token_tags: {tag: {tag: {_regex: $tag}}}}, order_by: {id: desc})  {
       id
       artifact_uri
       display_uri
@@ -42,7 +42,7 @@ export const getStaticProps = async() => {
   //   return a;
   // }
 
-    const { errors, data } = await fetchGraphQL(queryObjkts, 'ObjktsByTag', { tag: 'glitchart' })
+    const { errors, data } = await fetchGraphQL(queryObjkts, 'ObjktsByTag', { tag: 'glitch' })
     if (errors) {
       console.error(errors)
     }
@@ -50,7 +50,7 @@ export const getStaticProps = async() => {
     const axios = require('axios');
     const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc/main/filters/w.json');
     const gletchs = data.hic_et_nunc_token.filter((i) => !banned.data.includes(i.creator.address))
-  
+
     return {
       props: { gletchs },
       revalidate: 120
