@@ -44,7 +44,7 @@ a:hover, button:hover {
 }
 
 div{
-
+  overflow:hidden;
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -66,6 +66,7 @@ header{
   font-weight: bold;
   color:#FF00F0;
   font-size: 27px;
+  width:98%;
   
 }
 button {
@@ -93,7 +94,7 @@ button {
 footer{
 
   bottom: 18px;
-  width: 100%;
+  width: 98%;
 
 }
 
@@ -111,6 +112,8 @@ li{
   list-style-type: none;
   text-align: center;
   color: var(--third);
+  width: 98%;
+  word-wrap: break-word;
 }
 .pop{
   flex-direction: row;
@@ -131,7 +134,7 @@ li{
 .imagecontainer{
   position:relative;
   height: 72vw;
-  max-width: 93vw;
+  max-width: 95vw;
 }
 .slicedcontainer{
   width:33%;
