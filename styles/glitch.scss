@@ -59,7 +59,7 @@ h1 {
   position: inherit;
 //   margin: 0 auto;
   background: $glitch-bg-color;
-  overflow:hidden;
+
 }
 
 .glitch::before,
@@ -67,7 +67,6 @@ h1 {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-direction: alternate-reverse;
-  overflow:hidden;
   position: absolute;
   top: 60px; 
   clip: rect(0, 900px, 0, 0);

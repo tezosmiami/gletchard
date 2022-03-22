@@ -6,7 +6,7 @@
   font-size: 33px;
   --background: #1fff69;
   --text: #3636ff;
-
+  --third:#9900ff;
 }
 
 
@@ -36,7 +36,7 @@ a {
 }
 a:hover, button:hover {
   background-color: var(--text);
-  color: #9900ff;
+  color: var(--third);
 
 }
 * {
@@ -60,7 +60,6 @@ header{
   align-items:center;
   width: 80vw;
   height: 77px;
-  color:#ffa800
  
 }
 .bold {
@@ -87,6 +86,7 @@ button {
    /* --background: #ad33ff; */
    --background: #3636ff;
    --text: #1fff69;
+   --third: #ffa800;
 }
 
 
@@ -110,7 +110,7 @@ footer{
 li{
   list-style-type: none;
   text-align: center;
-  color: #9900ff;
+  color: var(--third);
 }
 .pop{
   flex-direction: row;
@@ -141,7 +141,7 @@ li{
     color:#FF00F0;
 }
 .name{
-  color:#9900ff;
+  color: var(--third);
 }
 .centerSync{
   justify-content: center;
