@@ -146,7 +146,7 @@ export default function Galerie({ gletchs }) {
         <div className='pop'>
       <Image 
         alt=""
-        height={270}
+        height={180}
         width={180}
         key={g.id}
         objectFit='cover'

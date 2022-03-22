@@ -97,7 +97,7 @@ export default function Home({ gletchs }) {
         alt=""
         // placeholder='blur'
         // quality={30}
-        height={270}
+        height={180}
         width={180}
         objectFit='cover'
         key={g.id}

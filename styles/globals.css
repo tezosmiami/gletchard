@@ -118,7 +118,7 @@ li{
 .pop{
   flex-direction: row;
   flex-wrap:wrap;
-  height:270px;
+  height:180px;
   width:180px;
 }
 .pop:hover {
