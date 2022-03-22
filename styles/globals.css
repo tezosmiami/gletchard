@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap);
+
 :root{
   
   font-family: 'Courier New', Courier, monospace;
@@ -20,6 +22,8 @@ body {
   height:100%;
   background-color: var(--background);
   color: var(--text);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 27px;
   
 }
 

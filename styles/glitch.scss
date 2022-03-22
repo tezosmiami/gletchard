@@ -1,5 +1,5 @@
 
-@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+// @import url(https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap);
 
 $bg-color: inherit;
 $glitch-bg-color: $bg-color;
@@ -9,8 +9,8 @@ html, body {
 }
 
 body {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 27px;
+  // font-family: 'Press Start 2P', cursive;
+  // font-size: 27px;
   font-weight: bold;
   color: #FF00F0;
   background-color: $bg-color;
