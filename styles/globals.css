@@ -144,7 +144,7 @@ li{
     color:#FF00F0;
 }
 .name{
-  color: var(--third);
+  color: var(--text);
 }
 .centerSync{
   justify-content: center;
