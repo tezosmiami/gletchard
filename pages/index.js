@@ -1,4 +1,4 @@
-import Head from 'next/head'
+Loimport Head from 'next/head'
 import Image from 'next/image'
 import {useState, useEffect} from 'react'
 import { usePassengerContext } from "../context/passenger-context";
@@ -109,7 +109,7 @@ export default function Home({ gletchs }) {
         // blurDataURL={'https://cloudflare-ipfs.com/ipfs/' + f.artifact_uri.slice(7)}
         >
        </Image>
-      : <ReactPlayer url={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)} width='100% height='100%' light={true} muted={true} playing={true} loop={true}/>
+      : <ReactPlayer url={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)} width='100%' height='100%' light={true} muted={true} playing={true} loop={true}/>
 }
       </div>
       </Link>
