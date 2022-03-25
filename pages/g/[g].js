@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import React from 'react'
+import ReactPlayer from 'react-player'
 
 const hicdex ='https://hdapi.teztools.io/v1/graphql'
 
@@ -73,6 +75,7 @@ query query_address($address: String!, $tag: String!) {
     artifact_uri
     display_uri
     id
+    mime
     creator{
       address
       name
@@ -99,8 +102,7 @@ query query_address($address: String!, $tag: String!) {
     if (errors) {
       console.error(errors)
     }
-
-    return data.hic_et_nunc_holder[0].address
+    return data.hic_et_nunc_holder[0]?.address || {notFound: true}
 
   }
     
@@ -144,6 +146,7 @@ export default function Galerie({ gletchs }) {
     {gletchs.map(g => (
       <Link key={g.id} href={`/gletch/${g.id}`} token={`https://cloudflare-ipfs.com/ipfs/${g.artifact_uri.slice(7)}`} passHref>
         <div className='pop'>
+        {g.mime != 'video/mp4' ?      
       <Image 
         alt=""
         height={180}
@@ -152,6 +155,9 @@ export default function Galerie({ gletchs }) {
         objectFit='cover'
         src={'https://cloudflare-ipfs.com/ipfs/' + g.artifact_uri.slice(7)}>
        </Image>
+       :
+       <ReactPlayer url={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)} width='180' height='180' playing={true} muted={true} loop={true} />
+      }
       </div>
       </Link>
      ))}

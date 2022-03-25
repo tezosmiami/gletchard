@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import {useState, useEffect} from 'react'
 import { usePassengerContext } from "../context/passenger-context";
-
+import React from 'react'
+import ReactPlayer from 'react-player'
 import Link from 'next/link'
 const hicdex ='https://hdapi.teztools.io/v1/graphql'
 
@@ -13,6 +14,7 @@ export const getStaticProps = async() => {
     query ObjktsByTag($tag: String!) {
      hic_et_nunc_token(where: {supply: {_neq: "0"}, token_tags: {tag: {tag: {_regex: $tag}}}}, order_by: {id: desc})  {
       id
+      mime
       artifact_uri
       display_uri
       creator {
@@ -93,6 +95,8 @@ export default function Home({ gletchs }) {
     {shuffled?.map(g=> (
       <Link key={g.id} href={`/gletch/${g.id}`} passHref>
         <div className='pop'>
+
+       {g.mime != 'video/mp4' ?      
       <Image
         alt=""
         // placeholder='blur'
@@ -105,6 +109,8 @@ export default function Home({ gletchs }) {
         // blurDataURL={'https://cloudflare-ipfs.com/ipfs/' + f.artifact_uri.slice(7)}
         >
        </Image>
+      : <ReactPlayer width='180' height='180' src={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)} muted={true} playing={true} loop={true}/>
+}
       </div>
       </Link>
      ))}

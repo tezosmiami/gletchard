@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { useState } from 'react';
 import { usePassengerContext } from "../../context/passenger-context";
 import Link from 'next/link'
+import React from 'react'
+import ReactPlayer from 'react-player';
 
 const hicdex ='https://hdapi.teztools.io/v1/graphql'
 
@@ -69,6 +71,7 @@ export const getStaticProps = async({ params }) => {
         artifact_uri
         description
         id
+        mime
         title
         supply
         creator {
@@ -137,7 +140,6 @@ const handleCollect = (swapId, xtzAmount) => async() => {
 };
  
 
-
 return(
     <>
       <Head>
@@ -151,7 +153,9 @@ return(
         <meta name="twitter:image" content={'https://cloudflare-ipfs.com/ipfs/' + card.artifact_uri.slice(7)} />
       </Head>
     <div className='cardcontainer'>
-        <div className='imagecontainer'>
+  
+        {card.mime != 'video/mp4' ?      
+   <div className='imagecontainer'>
         <Image 
         alt=''
         layout='fill'
@@ -159,6 +163,10 @@ return(
         src={'https://cloudflare-ipfs.com/ipfs/' + card.artifact_uri.slice(7)}>
         </Image>
         </div>
+        :
+        <ReactPlayer url={'https://ipfs.io/ipfs/' + card.artifact_uri.slice(7)} playing={true} muted={true} controls={true} loop={true} />
+      }
+        {/* </div> */}
         <p></p>
        
     <div className='bold'>{card.title}</div>
