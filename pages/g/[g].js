@@ -112,7 +112,7 @@ query query_address($address: String!, $tag: String!) {
     }
 
     const axios = require('axios');
-    const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc/main/filters/w.json');
+    const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
     const gletchs = data.hic_et_nunc_token.filter(i => !banned.data.includes(i.address));
 
     if (banned.data.includes(address)) {return {notFound: true}}
