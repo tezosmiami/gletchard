@@ -149,3 +149,8 @@ li{
 .centerSync{
   justify-content: center;
 }
+
+.video {
+  object-fit: cover;
+
+}

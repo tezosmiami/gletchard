@@ -156,7 +156,9 @@ export default function Galerie({ gletchs }) {
         src={'https://cloudflare-ipfs.com/ipfs/' + g.artifact_uri.slice(7)}>
        </Image>
        :
+       <div className='video'>
        <ReactPlayer url={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)} width='100%' height='100%' playing={true} muted={true} loop={true} />
+      </div>
       }
       </div>
       </Link>

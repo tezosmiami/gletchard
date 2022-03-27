@@ -109,8 +109,11 @@ export default function Home({ gletchs }) {
         // blurDataURL={'https://cloudflare-ipfs.com/ipfs/' + f.artifact_uri.slice(7)}
         >
        </Image>
-      : <ReactPlayer url={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)} width='100%' height='100%' muted={true} playing={true} loop={true}/>
-}
+      : 
+      <div className='video'>
+        <ReactPlayer url={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)} width='100%' height='100%' muted={true} playing={true} loop={true}/>
+      </div>
+      }  
       </div>
       </Link>
      ))}
