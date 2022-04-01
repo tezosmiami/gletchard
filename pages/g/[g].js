@@ -145,7 +145,7 @@ export default function Galerie({ gletchs }) {
     {gletchs.map(g => (
       <Link key={g.id} href={`/gletch/${g.id}`} token={`https://cloudflare-ipfs.com/ipfs/${g.artifact_uri.slice(7)}`} passHref>
         <div className='pop'>
-        {g.mime != 'video/mp4' ?      
+        {g.mime.includes('image') ?      
       <Image 
         alt=""
         height={180}
@@ -155,9 +155,12 @@ export default function Galerie({ gletchs }) {
         src={'https://cloudflare-ipfs.com/ipfs/' + g.artifact_uri.slice(7)}>
        </Image>
        :
+       g.mime.includes('video') ?     
        <div className='video'>
        <ReactPlayer url={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)} width='100%' height='100%' playing={true} muted={true} loop={true} />
       </div>
+      :
+      null
       }
       </div>
       </Link>

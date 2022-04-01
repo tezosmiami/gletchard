@@ -154,7 +154,7 @@ return(
       </Head>
     <div className='cardcontainer'>
   
-        {card.mime != 'video/mp4' ?      
+        {card.mime.includes('image')  ?      
    <div className='imagecontainer'>
         <Image 
         alt=''
@@ -163,9 +163,11 @@ return(
         src={'https://cloudflare-ipfs.com/ipfs/' + card.artifact_uri.slice(7)}>
         </Image>
         </div>
-        :
+        : card.mime.includes('video') ?
         <ReactPlayer url={'https://ipfs.io/ipfs/' + card.artifact_uri.slice(7)} playing={true} muted={true} controls={true} loop={true} />
-      }
+        : null
+
+     }
         {/* </div> */}
         <p></p>
        
