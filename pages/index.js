@@ -12,11 +12,10 @@ export const getStaticProps = async() => {
 
   const queryObjkts = `
     query ObjktsByTag($tag: String!) {
-     hic_et_nunc_token(where: {supply: {_neq: "0"}, token_tags: {tag: {tag: {_regex: $tag}}}}, order_by: {id: desc})  {
+     hic_et_nunc_token(where: {mime: {_nilike: "%audio%"}, supply: {_neq: "0"}, token_tags: {tag: {tag: {_regex: $tag}}}}, order_by: {id: desc})  {
       id
       mime
       artifact_uri
-      display_uri
       creator {
         address
         name
