@@ -5,6 +5,7 @@ import { usePassengerContext } from "../context/passenger-context";
 import React from 'react'
 import ReactPlayer from 'react-player'
 import Link from 'next/link'
+
 const hicdex ='https://hdapi.teztools.io/v1/graphql'
 
 
@@ -35,13 +36,6 @@ export const getStaticProps = async() => {
     return await result.json()
   }
 
-  // const shuffleFotos = (a) => {
-  //   for (let i = a.length - 1; i > 0; i--) {
-  //     const j = Math.floor(Math.random() * (i + 1));
-  //     [a[i], a[j]] = [a[j], a[i]];
-  //   }
-  //   return a;
-  // }
 
     const { errors, data } = await fetchGraphQL(queryObjkts, 'ObjktsByTag', { tag: 'glitch' })
     if (errors) {
@@ -61,9 +55,10 @@ export const getStaticProps = async() => {
 
 export default function Home({ gletchs }) {
   const [shuffled,setShuffled] = useState();
-  const random = Math.floor(Math.random() * gletchs.length-288)
-  const slicedGletchs = gletchs.slice(random, random+288)
-
+  const rand = Math.floor(Math.random() * 188)
+  const randSlice = Math.floor(Math.random() * gletchs.length-rand)
+  const slicedGletchs = gletchs.slice(randSlice, randSlice+rand)
+ 
   useEffect(() => {
      const shuffleGletches = (a) => {
       for (let i = a.length - 1; i > 0; i--) {
@@ -72,11 +67,11 @@ export default function Home({ gletchs }) {
       }
       return a;
      }
-     setShuffled(shuffleGletches(slicedGletchs)
+     setShuffled(shuffleGletches(slicedGletchs.concat(gletchs.slice(0,188-rand)))
      )
   }, [gletchs])
    
-  
+  // console.log(shuffled)
   return (
     <>
     <Head>
