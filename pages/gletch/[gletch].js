@@ -6,7 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 import ReactPlayer from 'react-player';
 
-const hicdex ='https://hdapi.teztools.io/v1/graphql'
+const hicdex ='https://api.hicdex.com/v1/graphql'
 
 // const querySubjkt = `
 // query Subjkt($address: String!) {
@@ -45,7 +45,7 @@ export const getStaticPaths = async() => {
     if (errors) {
       console.error(errors)
     }
-
+data && console.log(data)
     const axios = require('axios');
     const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
     const gletchard = data.hic_et_nunc_token.filter(g => !banned.data.includes(g.creator.address));
