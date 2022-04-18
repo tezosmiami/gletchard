@@ -36,7 +36,7 @@ export const getStaticPaths = async() => {
       creator{
         address
       }
-       }
+     }
    }
    `;
    
@@ -45,7 +45,7 @@ export const getStaticPaths = async() => {
     if (errors) {
       console.error(errors)
     }
-data && console.log(data)
+
     const axios = require('axios');
     const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
     const gletchard = data.hic_et_nunc_token.filter(g => !banned.data.includes(g.creator.address));
