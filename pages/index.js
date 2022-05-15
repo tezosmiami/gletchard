@@ -36,16 +36,29 @@ export const getServerSideProps = async() => {
     return await result.json()
   }
 
+    const shuffleGletches = (a) => {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
 
     const { errors, data } = await fetchGraphQL(queryObjkts, 'ObjktsByTag', { tag: 'glitch' })
     if (errors) {
       console.error(errors)
     }
 
+
+
     const axios = require('axios');
     const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
-    const gletchs = data.hic_et_nunc_token.filter((i) => !banned.data.includes(i.creator.address))
-
+    const filtered = data.hic_et_nunc_token.filter((i) => !banned.data.includes(i.creator.address));
+    const rand = Math.floor(Math.random() * 188);
+    const randSlice = Math.floor(Math.random() * filtered.length-rand);
+    const slicedGletchs = filtered.slice(randSlice, randSlice+rand);
+    const gletchs = shuffleGletches(slicedGletchs.concat(filtered.slice(0,188-rand)));
+   
     return {
       props: { gletchs }
       // revalidate: 120
@@ -54,22 +67,22 @@ export const getServerSideProps = async() => {
 
 
 export default function Home({ gletchs }) {
-  const [shuffled,setShuffled] = useState();
-  const rand = Math.floor(Math.random() * 188)
-  const randSlice = Math.floor(Math.random() * gletchs.length-rand)
-  const slicedGletchs = gletchs.slice(randSlice, randSlice+rand)
+  // const [shuffled,setShuffled] = useState();
+  // const rand = Math.floor(Math.random() * 188)
+  // const randSlice = Math.floor(Math.random() * gletchs.length-rand)
+  // const slicedGletchs = gletchs.slice(randSlice, randSlice+rand)
  
-  useEffect(() => {
-     const shuffleGletches = (a) => {
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
-     }
-     setShuffled(shuffleGletches(slicedGletchs.concat(gletchs.slice(0,188-rand)))
-     )
-  }, [gletchs])
+  // useEffect(() => {
+  //    const shuffleGletches = (a) => {
+  //     for (let i = a.length - 1; i > 0; i--) {
+  //       const j = Math.floor(Math.random() * (i + 1));
+  //       [a[i], a[j]] = [a[j], a[i]];
+  //     }
+  //     return a;
+  //    }
+  //    setShuffled(shuffleGletches(slicedGletchs.concat(gletchs.slice(0,188-rand)))
+  //    )
+  // }, [gletchs])
    
   // console.log(shuffled)
   return (
@@ -86,7 +99,7 @@ export default function Home({ gletchs }) {
       </Head>
       <p></p>
     <div className='container'>
-    {shuffled?.map(g=> (
+    {gletchs.map(g=> (
       <Link key={g.id} href={`/gletch/${g.id}`} passHref>
         <div className='pop'>
 
