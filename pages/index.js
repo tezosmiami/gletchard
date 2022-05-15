@@ -12,10 +12,11 @@ const hicdex ='https://api.hicdex.com/v1/graphql'
 export const getServerSideProps = async() => {
 
   const queryObjkts = `
-    query ObjktsByTag($tag: String!) {
-     hic_et_nunc_token(where: {mime: {_nilike: "%audio%"}, supply: {_neq: "0"}, token_tags: {tag: {tag: {_regex: $tag}}}}, order_by: {id: desc})  {
+    query ObjktsByTag($tag: String!, $offset: Int!) {
+     hic_et_nunc_token(where: {mime: {_nilike: "%audio%"}, supply: {_neq: "0"}, token_tags: {tag: {tag: {_ilike: $tag}}}}, order_by: {id: desc}, offset: $offset)  {
       id
       mime
+      display_uri
       artifact_uri
       creator {
         address
@@ -44,20 +45,26 @@ export const getServerSideProps = async() => {
       return a;
     }
 
-    const { errors, data } = await fetchGraphQL(queryObjkts, 'ObjktsByTag', { tag: 'glitch' })
-    if (errors) {
-      console.error(errors)
+
+    async function getObjkts(offset) {
+      const { errors, data } = await fetchGraphQL(queryObjkts, 'ObjktsByTag', { tag: '%glitch%', offset: offset })
+      if (errors) {
+        console.error(errors)
+       }
+       return data.hic_et_nunc_token
     }
-
-
 
     const axios = require('axios');
     const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
-    const filtered = data.hic_et_nunc_token.filter((i) => !banned.data.includes(i.creator.address));
-    const rand = Math.floor(Math.random() * 188);
-    const randSlice = Math.floor(Math.random() * filtered.length-rand);
-    const slicedGletchs = filtered.slice(randSlice, randSlice+rand);
-    const gletchs = shuffleGletches(slicedGletchs.concat(filtered.slice(0,188-rand)));
+    const latestGletchs = await getObjkts(0)
+    const random = Math.floor(Math.random() * 38000)
+    const randomGletchs = await getObjkts(random)
+
+    const filtered = randomGletchs.concat(latestGletchs).filter((i) => !banned.data.includes(i.creator.address));
+    // const rand = Math.floor(Math.random() * 188);
+    // const randSlice = Math.floor(Math.random() * filtered.length-rand);
+    // const slicedGletchs = filtered.slice(randSlice, randSlice+rand);
+    const gletchs = shuffleGletches(filtered);
    
     return {
       props: { gletchs }
@@ -112,7 +119,7 @@ export default function Home({ gletchs }) {
         width={180}
         objectFit='cover'
         key={g.id}
-        src={'https://cloudflare-ipfs.com/ipfs/' + g.artifact_uri.slice(7)}
+        src={'https://cloudflare-ipfs.com/ipfs/' + g.display_uri.slice(7)}
         // blurDataURL={'https://cloudflare-ipfs.com/ipfs/' + f.artifact_uri.slice(7)}
         >
        </Image>
