@@ -9,7 +9,7 @@ import Link from 'next/link'
 const hicdex ='https://api.hicdex.com/v1/graphql'
 
 
-export const getStaticProps = async() => {
+export const getServerSideProps = async() => {
 
   const queryObjkts = `
     query ObjktsByTag($tag: String!) {
@@ -47,8 +47,8 @@ export const getStaticProps = async() => {
     const gletchs = data.hic_et_nunc_token.filter((i) => !banned.data.includes(i.creator.address))
 
     return {
-      props: { gletchs },
-      revalidate: 120
+      props: { gletchs }
+      // revalidate: 120
   };
 };
 
