@@ -26,45 +26,45 @@ async function fetchGraphQL(queryObjkts, name, variables) {
   return await result.json()
 }
 
-export const getStaticPaths = async() => {
+// export const getStaticPaths = async() => {
  
-  const queryGletchardists = `
-  query gletchardists ($tag: String!) {
-  hic_et_nunc_tag(where: {tag: {_regex: $tag}}) {
-    tag_tokens(where: {token: {supply: {_neq: "0"}}}) {
-      token {
-        creator {
-          address
-          name
-        }
-      }
-    }
-  }
-}`;
+//   const queryGletchardists = `
+//   query gletchardists ($tag: String!) {
+//   hic_et_nunc_tag(where: {tag: {_regex: $tag}}) {
+//     tag_tokens(where: {token: {supply: {_neq: "0"}}}) {
+//       token {
+//         creator {
+//           address
+//           name
+//         }
+//       }
+//     }
+//   }
+// }`;
 
-   const { errors, data } = await fetchGraphQL(queryGletchardists, 'gletchardists', { tag: 'glitch' })
-    if (errors) {
-      console.error(errors)
-    }
+//    const { errors, data } = await fetchGraphQL(queryGletchardists, 'gletchardists', { tag: 'glitch' })
+//     if (errors) {
+//       console.error(errors)
+//     }
 
-    const axios = require('axios');
-    const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc/main/filters/w.json');
-    const gletchardists = data.hic_et_nunc_tag[0].tag_tokens.filter(i => !banned.data.includes(i.token.creator.address));
+//     const axios = require('axios');
+//     const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc/main/filters/w.json');
+//     const gletchardists = data.hic_et_nunc_tag[0].tag_tokens.filter(i => !banned.data.includes(i.token.creator.address));
 
-    const paths = gletchardists.map(f => {
-      return {
-          params: {
-          g: `${f.name || f.address}`,
-          // banned: response.data
-        }
-      }
-    })
+//     const paths = gletchardists.map(f => {
+//       return {
+//           params: {
+//           g: `${f.name || f.address}`,
+//           // banned: response.data
+//         }
+//       }
+//     })
 
-  return {
-      paths,
-      fallback: 'blocking'
-  };
-};
+//   return {
+//       paths,
+//       fallback: 'blocking'
+//   };
+// };
 
 
 export const getStaticProps = async({ params }) => {
@@ -101,6 +101,7 @@ query query_address($address: String!, $tag: String!) {
     if (errors) {
       console.error(errors)
     }
+    if (!data.hic_et_nunc_holder[0]) return {notFound: true}
     return data.hic_et_nunc_holder[0]?.address || {notFound: true}
 
   }

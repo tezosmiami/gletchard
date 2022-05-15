@@ -27,47 +27,47 @@ async function fetchGraphQL(queryObjkts, name, variables) {
   return await result.json()
 }
 
-export const getStaticPaths = async() => {
+// export const getStaticPaths = async() => {
  
-  const queryObjkts = `
-    query Objkts($tag: String!) {
-     hic_et_nunc_token(where: {supply: {_neq: "0"}, token_tags: {tag: {tag: {_regex: $tag}}}})  {
-      id
-      creator{
-        address
-      }
-     }
-   }
-   `;
+//   const queryObjkts = `
+//     query Objkts($tag: String!) {
+//      hic_et_nunc_token(where: {supply: {_neq: "0"}, token_tags: {tag: {tag: {_regex: $tag}}}})  {
+//       id
+//       creator{
+//         address
+//       }
+//      }
+//    }
+//    `;
    
    
-    const { errors, data } = await fetchGraphQL(queryObjkts, 'Objkts', { tag: 'glitch' })
-    if (errors) {
-      console.error(errors)
-    }
+//     const { errors, data } = await fetchGraphQL(queryObjkts, 'Objkts', { tag: 'glitch' })
+//     if (errors) {
+//       console.error(errors)
+//     }
 
-    const axios = require('axios');
-    const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
-    const gletchard = data.hic_et_nunc_token.filter(g => !banned.data.includes(g.creator.address));
+//     const axios = require('axios');
+//     const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
+//     const gletchard = data.hic_et_nunc_token.filter(g => !banned.data.includes(g.creator.address));
 
-    const paths = gletchard.map(g => {
-      return {
-          params: {
-          gletch: `${g.id}`
-        }
-      }
-    })
+//     const paths = gletchard.map(g => {
+//       return {
+//           params: {
+//           gletch: `${g.id}`
+//         }
+//       }
+//     })
 
-  return {
-      paths,
-      fallback: 'blocking'
-  };
-};
+//   return {
+//       paths,
+//       fallback: 'blocking'
+//   };
+// };
 
-export const getStaticProps = async({ params }) => {
+export const getServerSideProps = async({ params }) => {
   const queryObjktsbyId = `
       query ObjktsbyId($Id: bigint!) {
-      hic_et_nunc_token(where: {id: {_eq: $Id}}) {
+      hic_et_nunc_token(where: {id: {_eq: $Id}, token_tags: {tag: {tag: {_ilike: "%glitch%"}}}}) {
         artifact_uri
         description
         id
@@ -94,7 +94,10 @@ export const getStaticProps = async({ params }) => {
     if (errors) {
       console.error(errors)
     }
+    const axios = require('axios');
+    const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
     const card = data.hic_et_nunc_token[0]
+    if (!card ||  banned.data.includes(card.creator.address)) return {notFound: true}
     var ownedBy = (card.token_holders[card.token_holders.length-1].holder_id);
     const swaps = card.swaps[card.swaps.length-1] || null;
     const supply= card.supply;
