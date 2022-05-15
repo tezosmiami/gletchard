@@ -67,7 +67,7 @@ async function fetchGraphQL(queryObjkts, name, variables) {
 // };
 
 
-export const getStaticProps = async({ params }) => {
+export const getServerSideProps = async({ params }) => {
 
   const objktsByAddress = `
 query query_address($address: String!, $tag: String!) {
