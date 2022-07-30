@@ -96,13 +96,19 @@ export default function Home({ gletchs }) {
     <>
     <Head>
         <title>g̴l̸e̵t̷c̴h̶a̵r̷d̷.̷x̴y̸z̴</title>
-        <meta name="description" content="gletchard.xyz" />
-        <link rel="icon" href="/tezosmiami.ico" />
+        <meta name="description" content="tezos - hicetnunc glitchart objkts. ." />
+        <meta property="og:title" content="gletchard" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gletchard.xyz" />
+        <meta property="og:image" content="/fotographia7.jpg" />
+        <meta property="og:description" content="tezos - hicetnunc foto objkts" />
+        <link rel="icon" href="/logo11.jpeg" />
         <meta name="twitter:card" content="summary"/>
         <meta name="twitter:site" content="@gletchard.xyz"/>
         <meta name="twitter:creator" content="@tezosmiami"/>
         <meta name="twitter:title" content="gletchard.xyz"/>
-        <meta name="twitter:image" content="/tezos512.png" />
+        <meta name="twitter:description" content="tezos - hicetnunc glitchart objkts" />
+        <meta name="twitter:image" content="https://gateway.pinata.cloud/ipfs/QmTEKpoTXPBKvnK8UyAdT79LZufgpYXJoBB4PFpCohdM4A"/>
       </Head>
       <p></p>
     <div className='container'>
@@ -119,7 +125,7 @@ export default function Home({ gletchs }) {
         width={180}
         objectFit='cover'
         key={g.id}
-        src={'https://cloudflare-ipfs.com/ipfs/' + g.display_uri.slice(7)}
+        src={'https://ipfs.com/ipfs/' + g.display_uri.slice(7)}
         // blurDataURL={'https://cloudflare-ipfs.com/ipfs/' + f.artifact_uri.slice(7)}
         >
        </Image>

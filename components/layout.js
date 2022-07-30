@@ -6,7 +6,7 @@ import { LightButton } from './light-button';
 import Link from 'next/link';
 
 
-const hicdex ='https://hdapi.teztools.io/v1/graphql'
+const hicdex ='https://api.hicdex.com/v1/graphql'
 
 const querySubjkt = `
 query Subjkt($address: String!) {
