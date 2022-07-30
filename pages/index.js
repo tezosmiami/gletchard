@@ -100,7 +100,7 @@ export default function Home({ gletchs }) {
         <meta property="og:title" content="gletchard" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gletchard.xyz" />
-        <meta property="og:image" content="/fotographia7.jpg" />
+        <meta property="og:image" content="/logo11.jpeg" />
         <meta property="og:description" content="tezos - hicetnunc foto objkts" />
         <link rel="icon" href="/logo11.jpeg" />
         <meta name="twitter:card" content="summary"/>
