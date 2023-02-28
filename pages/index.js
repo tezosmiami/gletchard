@@ -55,7 +55,7 @@ export const getServerSideProps = async() => {
     }
 
     const axios = require('axios');
-    const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
+    const banned = await axios.get('https://raw.githubusercontent.com/teia-community/teia-report/main/restricted.json');
     const latestGletchs = await getObjkts(0)
     const random = Math.floor(Math.random() * 38000)
     const randomGletchs = await getObjkts(random)
@@ -119,13 +119,14 @@ export default function Home({ gletchs }) {
        {g.mime.includes('image') ?      
       <Image
         alt=""
+        unoptimized
         // placeholder='blur'
         // quality={30}
         height={180}
         width={180}
         objectFit='cover'
         key={g.id}
-        src={'https://ipfs.com/ipfs/' + g.display_uri.slice(7)}
+        src={'https://ipfs.io/ipfs/' + g.display_uri.slice(7)}
         // blurDataURL={'https://cloudflare-ipfs.com/ipfs/' + f.artifact_uri.slice(7)}
         >
        </Image>

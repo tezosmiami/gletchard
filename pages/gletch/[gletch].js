@@ -95,7 +95,7 @@ export const getServerSideProps = async({ params }) => {
       console.error(errors)
     }
     const axios = require('axios');
-    const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
+    const banned = await axios.get('https://raw.githubusercontent.com/teia-community/teia-report/main/restricted.json');
     const card = data.hic_et_nunc_token[0]
     if (!card ||  banned.data.includes(card.creator.address)) return {notFound: true}
     var ownedBy = (card.token_holders[card.token_holders.length-1].holder_id);
@@ -153,7 +153,7 @@ return(
         <meta name="twitter:site" content="@gletchard.xyz"/>
         <meta name="twitter:creator" content="@tezosmiami"/>
         <meta name="twitter:title" content="gletchard.xyz"/>
-        <meta name="twitter:image" content={'https://cloudflare-ipfs.com/ipfs/' + card.artifact_uri.slice(7)} />
+        <meta name="twitter:image" content={'https://ipfs.io/ipfs/' + card.artifact_uri.slice(7)} />
       </Head>
     <div className='cardcontainer'>
   
@@ -161,9 +161,10 @@ return(
    <div className='imagecontainer'>
         <Image 
         alt=''
+        unoptimized
         layout='fill'
         objectFit='contain'
-        src={'https://cloudflare-ipfs.com/ipfs/' + card.artifact_uri.slice(7)}>
+        src={'https://ipfs.io/ipfs/' + card.artifact_uri.slice(7)}>
         </Image>
         </div>
         : card.mime.includes('video') ?

@@ -114,7 +114,7 @@ query query_address($address: String!, $tag: String!) {
     }
 
     const axios = require('axios');
-    const banned = await axios.get('https://raw.githubusercontent.com/hicetnunc2000/hicetnunc-reports/main/filters/w.json');
+    const banned = await axios.get('https://raw.githubusercontent.com/teia-community/teia-report/main/restricted.json');
     const gletchs = data.hic_et_nunc_token.filter(i => !banned.data.includes(i.address));
 
     if (banned.data.includes(address)) {return {notFound: true}}
@@ -144,16 +144,17 @@ export default function Galerie({ gletchs }) {
       {gletchs[0]?.creator.name || gletchs[0]?.creator.address.substr(0, 5) + "..." + gletchs[0]?.creator.address.substr(-5)}</a></p>
     <div className='container'>
     {gletchs.map(g => (
-      <Link key={g.id} href={`/gletch/${g.id}`} token={`https://cloudflare-ipfs.com/ipfs/${g.artifact_uri.slice(7)}`} passHref>
+      <Link key={g.id} href={`/gletch/${g.id}`} token={`https://ipfs.io/ipfs/${g.artifact_uri.slice(7)}`} passHref>
         <div className='pop'>
         {g.mime.includes('image') ?      
       <Image 
         alt=""
+        unoptimized
         height={180}
         width={180}
         key={g.id}
         objectFit='cover'
-        src={'https://cloudflare-ipfs.com/ipfs/' + g.artifact_uri.slice(7)}>
+        src={'https://ipfs.io/ipfs/' + g.artifact_uri.slice(7)}>
        </Image>
        :
        g.mime.includes('video') ?     
