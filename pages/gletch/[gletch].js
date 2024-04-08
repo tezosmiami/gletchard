@@ -183,7 +183,7 @@ return(
     </p>
     </Link>
         <li> {card.description}</li>
-        <p>{supply > 1 ? supply + ' editions' : ' single edition'} -  <a href={`https://hecticnun.xyz/objkt/${card.id}`} target="blank"  rel="noopener noreferrer">objkt#{card.id}</a></p>
+        <p>{supply > 1 ? supply + ' editions' : ' single edition'} -  <a href={`https://magiccity.live/objkt/${card.id}`} target="blank"  rel="noopener noreferrer">objkt#{card.id}</a></p>
         {/* <p>owned by: <a href={`https://hicetnunc.miami/tz/${ownedBy}`} target="blank" rel="noopener noreferrer">{name || ownedBy.substr(0, 5) + "..." + ownedBy.substr(-5) }</a></p> */}
          {supply && swaps?.status==0 ? <a onClick={handleCollect(swaps.id, swaps.price)}>{`collect for ${(swaps.price* 0.000001).toFixed(2)} tez`}</a> : 'not for sale'}
     </div>
