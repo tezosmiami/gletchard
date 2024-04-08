@@ -4,12 +4,10 @@ import { BeaconWallet } from "@taquito/beacon-wallet";
 
 const PassengerContext = React.createContext();
 const options = {
-  name: 'Tezos Miami'
+  name: 'g̶l̴e̸t̶c̵h̴a̸r̵d̴.̶x̵y̵z̶'
  };
   
-if (process.browser){
-  const wallet = new BeaconWallet(options);
-}
+const wallet = typeof window !== 'undefined' ? new BeaconWallet(options) : null
 
 export const usePassengerContext = () => {
 
@@ -67,7 +65,7 @@ export const PassengerContextProvider = ({ children }) => {
   async function collect(swapId, xtzAmount) {
     try {
         const v2 = await tezos.wallet.at('KT1HbQepzV1nVGg8QVznG7z4RcHseD5kwqBn');
-        const op = await v2.methods
+        const op = await v2.methodsObject
             .collect(parseFloat(swapId))
             .send({
                 amount: parseFloat(xtzAmount),

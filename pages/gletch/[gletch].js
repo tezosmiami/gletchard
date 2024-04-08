@@ -6,7 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 import ReactPlayer from 'react-player';
 
-const hicdex ='https://api.hicdex.com/v1/graphql'
+const hicdex ='https://hicdex.magiccity.live/v1/graphql'
 
 // const querySubjkt = `
 // query Subjkt($address: String!) {
@@ -67,7 +67,7 @@ async function fetchGraphQL(queryObjkts, name, variables) {
 export const getServerSideProps = async({ params }) => {
   const queryObjktsbyId = `
       query ObjktsbyId($Id: bigint!) {
-      hic_et_nunc_token(where: {id: {_eq: $Id}, token_tags: {tag: {tag: {_ilike: "%glitch%"}}}}) {
+      token(where: {id: {_eq: $Id}, token_tags: {tag: {tag: {_ilike: "%glitch%"}}}}) {
         artifact_uri
         description
         id
@@ -96,7 +96,7 @@ export const getServerSideProps = async({ params }) => {
     }
     const axios = require('axios');
     const banned = await axios.get('https://raw.githubusercontent.com/teia-community/teia-report/main/restricted.json');
-    const card = data.hic_et_nunc_token[0]
+    const card = data.token[0]
     if (!card ||  banned.data.includes(card.creator.address)) return {notFound: true}
     var ownedBy = (card.token_holders[card.token_holders.length-1].holder_id);
     const swaps = card.swaps[card.swaps.length-1] || null;

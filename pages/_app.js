@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
   return (
   <PassengerContextProvider>
     <Layout>
-    <Component {...pageProps} />
+      <Component {...pageProps} />
     </Layout>
   </PassengerContextProvider>  
   )

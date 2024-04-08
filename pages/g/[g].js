@@ -4,11 +4,11 @@ import Link from 'next/link'
 import React from 'react'
 import ReactPlayer from 'react-player'
 
-const hicdex ='https://api.hicdex.com/v1/graphql'
+const hicdex ='https://hicdex.magiccity.live/v1/graphql'
 
 const querySubjkt = `
 query query_name ($name: String!) {
-  hic_et_nunc_holder(where: {name: {_eq: $name}}) {
+  holder(where: {name: {_eq: $name}}) {
     address
   }
 }
@@ -71,7 +71,7 @@ export const getServerSideProps = async({ params }) => {
 
   const objktsByAddress = `
 query query_address($address: String!, $tag: String!) {
-  hic_et_nunc_token(where: {mime: {_nilike: "%audio%"}, supply: {_neq: "0"}, creator: {address: {_eq: $address}, tokens: {token_tags: {tag: {tag: {_regex: $tag}}}}}}, order_by: {id: desc}) {
+  token(where: {mime: {_nilike: "%audio%"}, supply: {_neq: "0"}, creator: {address: {_eq: $address}, tokens: {token_tags: {tag: {tag: {_regex: $tag}}}}}}, order_by: {id: desc}) {
     artifact_uri
     id
     mime
@@ -101,8 +101,8 @@ query query_address($address: String!, $tag: String!) {
     if (errors) {
       console.error(errors)
     }
-    if (!data.hic_et_nunc_holder[0]) return {notFound: true}
-    return data.hic_et_nunc_holder[0]?.address || {notFound: true}
+    if (!data.holder[0]) return {notFound: true}
+    return data.holder[0]?.address || {notFound: true}
 
   }
     
@@ -115,7 +115,7 @@ query query_address($address: String!, $tag: String!) {
 
     const axios = require('axios');
     const banned = await axios.get('https://raw.githubusercontent.com/teia-community/teia-report/main/restricted.json');
-    const gletchs = data.hic_et_nunc_token.filter(i => !banned.data.includes(i.address));
+    const gletchs = data.token.filter(i => !banned.data.includes(i.address));
 
     if (banned.data.includes(address)) {return {notFound: true}}
     

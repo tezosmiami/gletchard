@@ -1,14 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap);
 
 :root{
-  
   font-family: 'Courier New', Courier, monospace;
   font-size: 33px;
   --background: #1fff69;
   --text: #3636ff;
   --third:#9900ff;
 }
-
 
 html,
 body {
@@ -76,7 +74,7 @@ button {
   font-size:18px;
   cursor: pointer;
   margin:0;
-  font-family:  inherit;
+  font-family: 'Courier';
 
 }
 

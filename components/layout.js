@@ -6,11 +6,11 @@ import { LightButton } from './light-button';
 import Link from 'next/link';
 
 
-const hicdex ='https://api.hicdex.com/v1/graphql'
+const hicdex ='https://hicdex.magiccity.live/v1/graphql'
 
 const querySubjkt = `
 query Subjkt($address: String!) {
-  hic_et_nunc_holder(where: {address: {_eq: $address}}) {
+  holder(where: {address: {_eq: $address}}) {
     name
   }
 }
@@ -43,7 +43,7 @@ export const Layout = ({children}) => {
        if (errors) {
          console.error(errors);
        }
-       data.hic_et_nunc_holder[0] && setName(data.hic_et_nunc_holder[0].name);
+       data.holder[0] && setName(data.holder[0].name);
      }
     }
     fetchData()
@@ -59,8 +59,8 @@ export const Layout = ({children}) => {
       {name || app.activeAccount && app.address.substr(0, 5) + "..." + app.address.substr(-5)}
       {/* </a>  */}
     </Link>
-  
-      <button className='name glitch' data-text="hicetnunc"  onClick={() => !app.activeAccount ? app.logIn() : app.logOut()}> 
+      <span className='name glitch' data-text="hicetnunc"></span>
+      <button className='name' onClick={() => !app.activeAccount ? app.logIn() : app.logOut()}> 
         {!app.activeAccount ?  's̶̨̫͙͙̗͂͗̌̈̏̚͝y̶̭̹͎̫̜͖̠̏͂̓͌̃̀́̕̕͜n̵̡̾͝ç̷̥̖̟̙̤͇͕͌̇̄̀͂̄ͅ' : `ů̵̝̅͒̇̒̒̆͂́ņ̶̢͖͙͙͍̦̀́̾̑̕̕͜͠ś̷̤̰̳̖͚̅̓́y̵̤̦͎̞̻̳͈͗̒̃̋͋̋͐̐n̵͖̞͍̍c̸̙͔̱̪͖̼̠͂̈́̀͒̓̿͜͠
 ̸̡̧̤̪̮̖̪̙͂̕`}
       </button>  

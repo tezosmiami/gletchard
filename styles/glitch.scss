@@ -4,6 +4,9 @@
 $bg-color: inherit;
 $glitch-bg-color: $bg-color;
 
+
+
+
 html, body {
   height: 100%;
 }
@@ -56,6 +59,7 @@ h1 {
 }
 
 .glitch {
+  font-family: 'Press Start 2P';
   position: inherit;
 //   margin: 0 auto;
   background: $glitch-bg-color;

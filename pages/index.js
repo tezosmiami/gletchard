@@ -6,14 +6,13 @@ import React from 'react'
 import ReactPlayer from 'react-player'
 import Link from 'next/link'
 
-const hicdex ='https://api.hicdex.com/v1/graphql'
-
+const hicdex ='https://hicdex.magiccity.live/v1/graphql'
 
 export const getServerSideProps = async() => {
 
   const queryObjkts = `
     query ObjktsByTag($tag: String!, $offset: Int!) {
-     hic_et_nunc_token(where: {mime: {_nilike: "%audio%"}, supply: {_neq: "0"}, token_tags: {tag: {tag: {_ilike: $tag}}}}, order_by: {id: desc}, offset: $offset)  {
+     token(where: {mime: {_nilike: "%audio%"}, supply: {_neq: "0"}, token_tags: {tag: {tag: {_ilike: $tag}}}}, order_by: {id: desc}, offset: $offset, limit: 44)  {
       id
       mime
       display_uri
@@ -51,7 +50,7 @@ export const getServerSideProps = async() => {
       if (errors) {
         console.error(errors)
        }
-       return data.hic_et_nunc_token
+       return data.token
     }
 
     const axios = require('axios');
