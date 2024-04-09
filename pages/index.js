@@ -12,7 +12,7 @@ export const getServerSideProps = async() => {
 
   const queryObjkts = `
     query ObjktsByTag($tag: String!, $offset: Int!) {
-     token(where: {mime: {_nilike: "%audio%"}, supply: {_neq: "0"}, token_tags: {tag: {tag: {_ilike: $tag}}}}, order_by: {id: desc}, offset: $offset, limit: 44)  {
+     token(where: {mime: {_ilike: "%image%"}, supply: {_neq: "0"}, token_tags: {tag: {tag: {_ilike: $tag}}}}, order_by: {id: desc}, offset: $offset, limit: 44)  {
       id
       mime
       display_uri
