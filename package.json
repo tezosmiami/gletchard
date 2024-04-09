@@ -8,8 +8,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@taquito/beacon-wallet": "^19.1.0",
-    "@taquito/taquito": "^19.1.0",
+    "@taquito/beacon-wallet": "19.1.0",
+    "@taquito/taquito": "19.1.0",
     "next": "^12.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
